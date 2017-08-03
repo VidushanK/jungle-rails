@@ -19,9 +19,12 @@ Rails.application.routes.draw do
   post '/login', to: 'login#create'
   delete '/logout', to: 'login#destroy'
 
-  get '/register', to: 'register#new'
-  post '/register', to: 'register#create'
+  # get '/register', to: 'register#new'
+  # post '/register', to: 'register#create'
 
+  #  post '/users', to: 'users#create'
+  #  get '/users/new', to: 'users#new'
+  resources :users, only: [:new, :create]
 
   resources :orders, only: [:create, :show]
 
