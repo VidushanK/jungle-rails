@@ -1,1 +1,8 @@
 <h1> login page</h1>
+<%= form_for :login do %>
+Email: <%= text_field_tag :email %>
+<br><br>
+Password: <%= password_field_tag :password %>
+<br><br>
+<%= submit_tag "Submit" %>
+<% end %>

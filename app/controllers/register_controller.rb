@@ -12,12 +12,12 @@ class RegisterController < ApplicationController
       render :new
     end
   end
-
-  def register_params
-    params.require(:register).permit(
-    :name,
-    :email,
-    :password
-    )
-  end
+  private
+    def register_params
+      params.require(:register).permit(
+      :name,
+      :email,
+      :password
+      )
+    end
 end
