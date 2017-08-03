@@ -10,6 +10,18 @@ Rails.application.routes.draw do
     delete :remove_item
   end
 
+  # resource :login do
+  #   get '/', to: "login#new"
+  #   post '/', to: "login#create"
+  # end
+
+  get '/login', to: 'login#new'
+  post '/login', to: 'login#create'
+
+  get '/register', to: 'register#new'
+  post '/register', to: 'register#create'
+
+
   resources :orders, only: [:create, :show]
 
   namespace :admin do
