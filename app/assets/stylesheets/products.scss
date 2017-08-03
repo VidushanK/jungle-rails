@@ -39,7 +39,16 @@ main section.categories-show {
         opacity: 0.3;
         transition: all 0.3s;
       }
-
+      span.soldout{
+      background-color: #ef8381;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      font-size: 0.8em;
+      border-radius: 4px 0 18px 0;
+      text-transform: uppercase;
+      }
       aside.price {
         position: absolute;
         top: 0;
@@ -72,5 +81,3 @@ main section.products-show {
     }
   }
 }
-
-
