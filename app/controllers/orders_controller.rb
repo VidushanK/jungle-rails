@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     if order.valid?
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
+      Receipt.welcome_email(@order).deliver_now
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
@@ -36,7 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order(stripe_charge)
-    order = Order.new(
+    @order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_total,
       stripe_charge_id: stripe_charge.id, # returned by stripe
@@ -44,7 +45,7 @@ class OrdersController < ApplicationController
     cart.each do |product_id, details|
       if product = Product.find_by(id: product_id)
         quantity = details['quantity'].to_i
-        order.line_items.new(
+        @order.line_items.new(
           product: product,
           quantity: quantity,
           item_price: product.price,
@@ -52,8 +53,8 @@ class OrdersController < ApplicationController
         )
       end
     end
-    order.save!
-    order
+    @order.save!
+    @order
   end
 
   # returns total in cents not dollars (stripe uses cents as well)
