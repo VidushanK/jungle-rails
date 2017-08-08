@@ -44,6 +44,6 @@ RSpec.describe User, type: :model do
       expect(@user.password.length).to be >= 6
     end
   end
-  
+
 
 end
